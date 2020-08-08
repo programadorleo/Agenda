@@ -17,29 +17,26 @@ public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
-	Conexion conexion = new Conexion();
-	Connection con;
-	Statement statement;
-	ResultSet resultset;
 	DefaultTableModel modelo;
 	int id;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Principal frame = new Principal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-	}
+	
 
 	
+	public JTable getTable() {
+		return table;
+	}
+
+
+
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+
+
+
 	public Principal() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,34 +122,12 @@ public class Principal extends JFrame {
 				new DefaultTableModel(new Object[][] {}, new String[] { "ID", "APELLIDO", "NOMBRE", "TELEFONO" }));
 		scrollPane.setViewportView(table);
 
-		listar();
+		Conexion miConexion = new Conexion();
+		miConexion.getConexion();
+		miConexion.mostrar();
+	//	miConexion.listar();
 	}
 
-	void listar() {
-		String consultaSql = "select * from contactos";
 
-		try {
-
-			con = (Connection) conexion.getConnextion();
-			statement = (Statement) con.createStatement();
-			resultset = statement.executeQuery(consultaSql);
-
-			Object[] contacto = new Object[4];
-			modelo = (DefaultTableModel) table.getModel();
-			while (resultset.next()) {
-
-				contacto[0] = resultset.getInt("ID");
-				contacto[1] = resultset.getString("APELLIDO");
-				contacto[2] = resultset.getString("NOMBRE");
-				contacto[3] = resultset.getString("TELEFONO");
-				modelo.addRow(contacto);
-
-			}
-
-			table.setModel(modelo);
-		} catch (Exception e) {
-
-		}
-
-	}
+	
 }

@@ -2,42 +2,60 @@ package configuracion;
 
 import java.sql.*;
 import javax.sql.*;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import vista.*;
 
 public class Conexion {
-	
-	Connection miConexion;
 
-	public Conexion (){
+	private final String base = "proyecto_java";
+	private final String user = "root";
+	private final String password = "";
+	private final String url = "jdbc:mysql://localhost:3306/" + base;
+	private Connection conexion;
+
+	static Statement statement;
+	static ResultSet resultset;
+
+	public Connection getConexion() {
 
 		try {
 
-			
-			   miConexion =
-			  DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_java",
-			  "root", "");
-			  
-			/* * 
-			 * Statement miStatement = miConexion.createStatement();
-			 * 
-			 * ResultSet miResultSet = miStatement.executeQuery("SELECT * FROM CONTACTOS");
-			 * 
-			 * while (miResultSet.next()) {
-			 * 
-			 * System.out.println(miResultSet.getString("id") + " " +
-			 * miResultSet.getString("APELLIDO") + " " + miResultSet.getString("NOMBRE") +
-			 * " " + miResultSet.getString("TELEFONO")); }
-			 */
+			conexion = (Connection) DriverManager.getConnection(this.url, this.user, this.password);
+
+			statement = (Statement) conexion.createStatement();
 
 		} catch (Exception e) {
 
 			System.out.println("No conecta" + e.getMessage());
 
 		}
+
+		return conexion;
+
 	}
-	
-	public Connection getConnextion() {
-		
-		return miConexion;
+
+	public void mostrar() {
+
+		try {
+
+			String consultaSql = "select * from contactos";
+
+			resultset = statement.executeQuery(consultaSql);
+
+			while (resultset.next()) {
+
+				System.out.println(resultset.getInt("id") + " " + resultset.getString("APELLIDO") + " "
+						+ resultset.getString("APELLIDO") + " " + resultset.getString("NOMBRE") + " "
+						+ resultset.getString("TELEFONO"));
+			}
+
+		} catch (Exception e) {
+
+			System.out.println("No conecta" + e.getMessage());
+
+		}
+
 	}
-	
+
 }
