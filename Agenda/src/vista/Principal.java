@@ -18,8 +18,16 @@ public class Principal extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	DefaultTableModel modelo;
-	int id;
 
+	public Button agregar;
+	public Button modificar;
+	public Button eliminar;	
+	public Button nuevo;	
+	public TextField id;	
+	public TextField apellido;
+	public TextField nombre;
+	public TextField telefono;
+	
 	
 
 	
@@ -35,7 +43,12 @@ public class Principal extends JFrame {
 	}
 
 
-
+	
+	
+	
+	
+	
+			
 
 	public Principal() {
 
@@ -95,7 +108,7 @@ public class Principal extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		Button agregar = new Button("AGREGAR");
+	    agregar = new Button("AGREGAR");
 		panel_1.add(agregar);
 
 		Button modificar = new Button("MODIFICAR");
