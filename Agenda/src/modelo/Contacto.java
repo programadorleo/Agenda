@@ -9,8 +9,6 @@ public class Contacto{
 	private String telefono;
 	
 	
-	
-	
 	public Contacto(int id, String apellido, String nombre, String telefono) {
 		super();
 		this.id = id;
@@ -20,11 +18,9 @@ public class Contacto{
 	}
 	
 	
-	
 	public Contacto() {
 		super();
 	}
-
 
 
 	public int getId() {
@@ -52,6 +48,4 @@ public class Contacto{
 		this.telefono = telefono;
 	}
 	
-
-
 }

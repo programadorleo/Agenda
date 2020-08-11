@@ -9,13 +9,11 @@ public class Main {
 
 	public static void main(String[] args) {
 
-	EventQueue.invokeLater(new Runnable() {
+	/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Vista frame = new Vista();
-					frame.setVisible(true);
-					
-					
+					frame.setVisible(true);										
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +25,7 @@ public class Main {
 		Vista v = new Vista();
 		Controlador c = new Controlador(v);
 		v.setVisible(true);
-		v.setLocationRelativeTo(v);
+		v.setLocationRelativeTo(v);*/
 
 	}
 

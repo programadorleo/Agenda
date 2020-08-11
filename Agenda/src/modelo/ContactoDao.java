@@ -50,7 +50,5 @@ public class ContactoDao {
 		
 		return datos;
 	}
-	
-	
-
+		
 }

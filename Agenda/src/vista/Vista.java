@@ -30,7 +30,7 @@ public class Vista extends JFrame {
 	public TextField telefono;
 	
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 
 	
 		Vista v = new Vista();
@@ -38,7 +38,7 @@ public class Vista extends JFrame {
 		v.setVisible(true);
 		v.setLocationRelativeTo(v);
 
-	}	*/
+	}	
 	
 	
 	
