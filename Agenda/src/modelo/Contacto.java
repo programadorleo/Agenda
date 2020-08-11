@@ -1,4 +1,4 @@
-package configuracion;
+package modelo;
 
 
 public class Contacto{
@@ -7,6 +7,26 @@ public class Contacto{
 	private String apellido;
 	private String nombre;
 	private String telefono;
+	
+	
+	
+	
+	public Contacto(int id, String apellido, String nombre, String telefono) {
+		super();
+		this.id = id;
+		this.apellido = apellido;
+		this.nombre = nombre;
+		this.telefono = telefono;
+	}
+	
+	
+	
+	public Contacto() {
+		super();
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

@@ -11,13 +11,14 @@ import javax.swing.table.DefaultTableModel;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
-import configuracion.Conexion;
+import controlador.Controlador;
+import modelo.Conexion;
 
-public class Principal extends JFrame {
+public class Vista extends JFrame {
 
-	private JPanel contentPane;
-	private JTable table;
-	DefaultTableModel modelo;
+	public JPanel contentPane;
+	public JTable tabla;
+	public DefaultTableModel modelo;
 
 	public Button agregar;
 	public Button modificar;
@@ -29,28 +30,21 @@ public class Principal extends JFrame {
 	public TextField telefono;
 	
 	
+	/*public static void main(String[] args) {
 
 	
-	public JTable getTable() {
-		return table;
-	}
+		Vista v = new Vista();
+		Controlador c = new Controlador(v);
+		v.setVisible(true);
+		v.setLocationRelativeTo(v);
 
-
-
-
-	public void setTable(JTable table) {
-		this.table = table;
-	}
-
-
+	}	*/
 	
 	
 	
 	
-	
-			
 
-	public Principal() {
+	public Vista() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 581, 634);
@@ -130,15 +124,23 @@ public class Principal extends JFrame {
 		scrollPane.setBounds(12, 29, 397, 183);
 		panel_2.add(scrollPane);
 
-		table = new JTable();
-		table.setModel(
+		tabla = new JTable();
+		/*table.setModel(
 				new DefaultTableModel(new Object[][] {}, new String[] { "ID", "APELLIDO", "NOMBRE", "TELEFONO" }));
-		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(table);*/
+		
+		/*String []titulo= {"ID", "APELLIDO", "NOMBRE", "TELEFONO" };
+		
+		String[] registro = new String[4];
+		
+		DefaultTableModel modelo = new DefaultTableModel(null,titulo);
+		
+	    //modelo = new DefaultTableModel(new Object[][] {}, new String[] { "ID", "APELLIDO", "NOMBRE", "TELEFONO" });
+		
+		tabla.setModel(	modelo);*/
+		scrollPane.setViewportView(tabla);
 
-		Conexion miConexion = new Conexion();
-		miConexion.getConexion();
-		miConexion.mostrar();
-	//	miConexion.listar();
+		
 	}
 
 
