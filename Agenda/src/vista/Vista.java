@@ -1,48 +1,45 @@
 package vista;
 
-import java.awt.*;
-import java.sql.ResultSet;
-
-import javax.swing.*;
+import java.awt.Button;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.LayoutManager;
+import java.awt.TextField;
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 
 import controlador.Controlador;
-import modelo.Conexion;
+
 
 public class Vista extends JFrame {
 
-	public JPanel contentPane;
-	public JTable tabla;
-	public DefaultTableModel modelo;
-
-	public Button agregar;
-	public Button modificar;
-	public Button eliminar;	
-	public Button nuevo;	
-	public TextField id;	
-	public TextField apellido;
-	public TextField nombre;
-	public TextField telefono;
-	
-	
 	public static void main(String[] args) {
+		
+			
 
-	
 		Vista v = new Vista();
 		Controlador c = new Controlador(v);
 		v.setVisible(true);
-		v.setLocationRelativeTo(v);
 
-	}	
-	
-	
-	
-	
+	}
+
+	public JPanel contentPane;
+	public JTable tabla;
+	public Button agregar;
+	public Button modificar;
+	public Button eliminar;
+	public Button nuevo;
+	public TextField id;
+	public TextField apellido;
+	public TextField nombre;
+	public TextField telefono;
 
 	public Vista() {
 
@@ -100,9 +97,9 @@ public class Vista extends JFrame {
 		panel_1.setBorder(new TitledBorder(null, "Operaciones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(38, 245, 429, 72);
 		contentPane.add(panel_1);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_1.setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-	    agregar = new Button("AGREGAR");
+		agregar = new Button("AGREGAR");
 		panel_1.add(agregar);
 
 		Button modificar = new Button("MODIFICAR");
@@ -125,24 +122,9 @@ public class Vista extends JFrame {
 		panel_2.add(scrollPane);
 
 		tabla = new JTable();
-		/*table.setModel(
-				new DefaultTableModel(new Object[][] {}, new String[] { "ID", "APELLIDO", "NOMBRE", "TELEFONO" }));
-		scrollPane.setViewportView(table);*/
-		
-		/*String []titulo= {"ID", "APELLIDO", "NOMBRE", "TELEFONO" };
-		
-		String[] registro = new String[4];
-		
-		DefaultTableModel modelo = new DefaultTableModel(null,titulo);
-		
-	    //modelo = new DefaultTableModel(new Object[][] {}, new String[] { "ID", "APELLIDO", "NOMBRE", "TELEFONO" });
-		
-		tabla.setModel(	modelo);*/
+
 		scrollPane.setViewportView(tabla);
 
-		
 	}
 
-
-	
 }
