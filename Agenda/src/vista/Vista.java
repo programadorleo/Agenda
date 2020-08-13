@@ -1,17 +1,11 @@
 package vista;
 
 import java.awt.Button;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
 import java.awt.TextField;
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
@@ -21,9 +15,7 @@ import controlador.Controlador;
 public class Vista extends JFrame {
 
 	public static void main(String[] args) {
-		
-			
-
+					
 		Vista v = new Vista();
 		Controlador c = new Controlador(v);
 		v.setVisible(true);
@@ -39,7 +31,7 @@ public class Vista extends JFrame {
 	public TextField id;
 	public TextField apellido;
 	public TextField nombre;
-	public TextField telefono;
+	public TextField telefono;	
 
 	public Vista() {
 
@@ -124,7 +116,18 @@ public class Vista extends JFrame {
 		tabla = new JTable();
 
 		scrollPane.setViewportView(tabla);
-
-	}
+		/*
+		 int contactoID;
+		if(id.getText()=="") {
+			contactoID=0;}
+		else {
+		    contactoID = Integer.parseInt(id.getText());}		     		
+        String contactoApellido = apellido.getText();
+        String contactoNombre=nombre.getText();
+        String contactoTelefono = telefono.getText();
+        
+       Contacto contacto = new  Contacto(contactoID,contactoApellido,contactoNombre,contactoTelefono);
+	*/
+		}
 
 }
