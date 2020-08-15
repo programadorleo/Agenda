@@ -11,7 +11,6 @@ public class Conexion {
 	public Statement statement;
 	public ResultSet resultset;
 	
-
 	public Connection getConexion() {
 
 		String user = "root";

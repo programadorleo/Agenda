@@ -7,8 +7,7 @@ public class Contacto{
 	private String apellido;
 	private String nombre;
 	private String telefono;
-	
-	
+		
 	public Contacto(int id, String apellido, String nombre, String telefono) {
 		super();
 		this.id = id;
@@ -17,7 +16,6 @@ public class Contacto{
 		this.telefono = telefono;
 	}
 	
-
 
 	public int getId() {
 		return id;

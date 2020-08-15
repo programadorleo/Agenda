@@ -8,14 +8,12 @@ import java.awt.TextField;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-
 import controlador.Controlador;
-import modelo.Conexion;
 
 public class Vista extends JFrame {
 
 	public static void main(String[] args) {
-					
+
 		Vista v = new Vista();
 		Controlador c = new Controlador(v);
 		v.setVisible(true);
@@ -24,6 +22,7 @@ public class Vista extends JFrame {
 
 	public JPanel contentPane;
 	public JTable tabla;
+	public Button seleccionar;
 	public Button agregar;
 	public Button modificar;
 	public Button eliminar;
@@ -31,13 +30,12 @@ public class Vista extends JFrame {
 	public TextField id;
 	public TextField apellido;
 	public TextField nombre;
-	public TextField telefono;	
-    //public Contacto contacto;
+	public TextField telefono;
 	public TextField numero;
-	
+
 	public Vista() {
-		
-		numero= new TextField("10");
+
+		numero = new TextField("10");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 581, 634);
 		contentPane = new JPanel();
@@ -72,7 +70,7 @@ public class Vista extends JFrame {
 		label_3.setBounds(10, 117, 70, 24);
 		panel.add(label_3);
 
-	    id = new TextField();
+		id = new TextField();
 		id.setBounds(112, 26, 145, 24);
 		panel.add(id);
 
@@ -80,13 +78,17 @@ public class Vista extends JFrame {
 		apellido.setBounds(112, 57, 145, 24);
 		panel.add(apellido);
 
-	    nombre = new TextField();
+		nombre = new TextField();
 		nombre.setBounds(112, 87, 145, 24);
 		panel.add(nombre);
 
 		telefono = new TextField();
 		telefono.setBounds(112, 117, 145, 24);
 		panel.add(telefono);
+
+		seleccionar = new Button("SELECCIONAR");
+		seleccionar.setBounds(280, 67, 145, 24);
+		panel.add(seleccionar);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Operaciones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -100,10 +102,10 @@ public class Vista extends JFrame {
 		modificar = new Button("MODIFICAR");
 		panel_1.add(modificar);
 
-	    eliminar = new Button("ELIMINAR");
+		eliminar = new Button("ELIMINAR");
 		panel_1.add(eliminar);
 
-	    nuevo = new Button("NUEVO");
+		nuevo = new Button("NUEVO");
 		panel_1.add(nuevo);
 
 		JPanel panel_2 = new JPanel();
@@ -111,32 +113,14 @@ public class Vista extends JFrame {
 		panel_2.setBounds(28, 351, 433, 225);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
-		
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 29, 397, 183);
-		
 
 		tabla = new JTable();
 		scrollPane.setViewportView(tabla);
-		
+
 		panel_2.add(scrollPane);
-		
-		
-			
-	/*	int contactoID;
-		if(id.getText()=="") {
-			contactoID=0;}*/
-	/*	else {
-			
-		
-		    contactoID = Integer.parseInt(id.getText());		     		
-        String contactoApellido = apellido.getText();
-        String contactoNombre=nombre.getText();
-        String contactoTelefono = telefono.getText();
-        
-        contacto = new  Contacto(contactoID,contactoApellido,contactoNombre,contactoTelefono);
-	
-		}*/
+
 	}
 }
