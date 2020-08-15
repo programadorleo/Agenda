@@ -17,10 +17,6 @@ public class Contacto{
 		this.telefono = telefono;
 	}
 	
-	
-	public Contacto() {
-		super();
-	}
 
 
 	public int getId() {

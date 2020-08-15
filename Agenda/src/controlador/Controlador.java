@@ -1,8 +1,6 @@
 package controlador;
 
 import java.awt.event.ActionEvent;
-
-
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,18 +8,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.Conexion;
+import modelo.*;
 import modelo.Contacto;
-//import vista.Vista;
+import vista.Vista;
 
-import vista.*;
+
 
 public class Controlador implements ActionListener {
 
-	Contacto c = new Contacto();
-	Vista vista =new Vista();
+	Vista vista = new Vista();
 	DefaultTableModel modelo;
 	Connection con;
 	Conexion conexion = new Conexion();
@@ -29,19 +25,35 @@ public class Controlador implements ActionListener {
 	JScrollPane scrollPane = new JScrollPane();
 
 	public Controlador(Vista vista) {
-
-		this.vista = vista;
-	
+		
+		vista = new Vista();
+		System.out.println("controlador");
+		
+		
 		mostrarDatos();
-		this.vista.agregar.addActionListener(this);
-	
+		
+						
+	/*	super();
+		
+		vista = new Vista();
+		this.vista=vista;
+
 		
 
+		
+		
+		vista.agregar.addActionListener(this);
+	
+		miapellido = c.getApellido();
+
+		System.out.println(miapellido);*/
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		/*Vista vista=new Vista();
 
 		if (e.getSource()==vista.agregar) {
 
@@ -50,11 +62,13 @@ public class Controlador implements ActionListener {
 			agregarDatos();
 			mostrarDatos();
 
-		}
+		}*/
 
 	}
 
 	public void agregarDatos() {
+		
+	/*	vista = new Vista();
 		
 		System.out.println("metodo agrego datos");
 		
@@ -95,10 +109,12 @@ public class Controlador implements ActionListener {
 
 			}
 
-		}
+		}*/
 	}
 
 	public void mostrarDatos() {
+		
+		Vista vista=new Vista();
 
 		String[] titulo = { "ID", "APELLIDO", "NOMBRE", "TELEFONO" };
 
@@ -125,8 +141,8 @@ public class Controlador implements ActionListener {
 
 			}
 
-			vista.tabla.setModel(modelo);
-
+			vista.tabla.setModel(modelo);		
+			
 		} catch (Exception e) {
 
 			JOptionPane.showMessageDialog(null, "Error mostrar datos" + e.getMessage());
