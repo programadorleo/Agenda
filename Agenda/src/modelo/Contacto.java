@@ -16,6 +16,8 @@ public class Contacto{
 		this.telefono = telefono;
 	}
 	
+	public Contacto() {}
+	
 
 	public int getId() {
 		return id;

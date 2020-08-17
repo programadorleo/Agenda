@@ -1,7 +1,9 @@
 package vista;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Label;
 import java.awt.LayoutManager;
 import java.awt.TextField;
@@ -30,19 +32,19 @@ public class Vista extends JFrame {
 	public TextField id;
 	public TextField apellido;
 	public TextField nombre;
-	public TextField telefono;
-	public TextField numero;
+	public TextField telefono;	
 
 	public Vista() {
 
-		numero = new TextField("10");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 581, 634);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(Color.LIGHT_GRAY);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		Font fuenteBoton = new Font("Tahoma", Font.BOLD, 15);
 
 		JLabel lblNewLabel = new JLabel("CONTACTOS");
 		lblNewLabel.setBounds(172, 13, 165, 33);
@@ -50,7 +52,8 @@ public class Vista extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Datos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(34, 48, 433, 170);
+		panel.setBounds(40, 48, 440, 170);
+		panel.setBackground(Color.GRAY);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -88,29 +91,37 @@ public class Vista extends JFrame {
 
 		seleccionar = new Button("SELECCIONAR");
 		seleccionar.setBounds(280, 67, 145, 24);
+		seleccionar.setFont(fuenteBoton);
 		panel.add(seleccionar);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Operaciones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(38, 245, 429, 72);
+		panel_1.setBounds(44, 245, 440, 72);
+		panel_1.setBackground(Color.gray);
 		contentPane.add(panel_1);
 		panel_1.setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		agregar = new Button("AGREGAR");
+		agregar.setFont(fuenteBoton);
+
 		panel_1.add(agregar);
 
 		modificar = new Button("MODIFICAR");
+		modificar.setFont(fuenteBoton);
 		panel_1.add(modificar);
 
 		eliminar = new Button("ELIMINAR");
+		eliminar.setFont(fuenteBoton);
 		panel_1.add(eliminar);
 
 		nuevo = new Button("NUEVO");
+		nuevo.setFont(fuenteBoton);
 		panel_1.add(nuevo);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Resultado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(28, 351, 433, 225);
+		panel_2.setBounds(40, 351, 440, 225);
+		panel_2.setBackground(Color.gray);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 

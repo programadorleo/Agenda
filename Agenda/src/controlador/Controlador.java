@@ -21,20 +21,21 @@ public class Controlador implements ActionListener {
 	PreparedStatement sentencia;
 	JScrollPane scrollPane = new JScrollPane();
 
+	int miid;
+	String miapellido;
+	String minombre;
+	String mitelefono;
+
 	public Controlador(Vista vista) {
 
 		this.vista = vista;
 
 		mostrarDatos();
 
-		vista.agregar.addActionListener(this);
-
 		vista.seleccionar.addActionListener(this);
-
+		vista.agregar.addActionListener(this);
 		vista.modificar.addActionListener(this);
-
 		vista.eliminar.addActionListener(this);
-
 		vista.nuevo.addActionListener(this);
 
 	}
@@ -42,36 +43,33 @@ public class Controlador implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource() == vista.agregar) {
-
-			agregarDatos();
-
-			mostrarDatos();
-		}
 		if (e.getSource() == vista.seleccionar) {
-
 			seleccionar();
-
 		}
 
-		if (e.getSource() == vista.nuevo) {
-
+		if (e.getSource() == vista.agregar) {
+			agregarDatos();
+			mostrarDatos();
 			limpiar();
 		}
 
 		if (e.getSource() == vista.modificar) {
-
 			modificar();
 			mostrarDatos();
 			limpiar();
 		}
 
 		if (e.getSource() == vista.eliminar) {
-
 			eliminar();
 			mostrarDatos();
 			limpiar();
 		}
+
+		if (e.getSource() == vista.nuevo) {
+			limpiar();
+		}
+
+		// capturarDatosVista(); probar capturar datos aca y no actualizar en motodos
 
 	}
 
@@ -89,20 +87,52 @@ public class Controlador implements ActionListener {
 		}
 	}
 
-	public void limpiar() {
+	public void capturarDatosVista() {
 
-		vista.id.setText(null);
-		vista.apellido.setText(null);
-		vista.nombre.setText(null);
-		vista.telefono.setText(null);
+		miid = Integer.parseInt(vista.id.getText());
+		miapellido = vista.apellido.getText();
+		minombre = vista.nombre.getText();
+		mitelefono = vista.telefono.getText();
+
+	}
+
+	public void agregarDatos() {
+
+		capturarDatosVista();
+
+		if (miid == 0 || miapellido.equals("") || minombre.equals("") || mitelefono.equals("")) {
+
+			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias");
+
+		} else {
+
+			String sql = "INSERT INTO contactos (id,APELLIDO,NOMBRE,TELEFONO) VALUES(?,?,?,?)";
+
+			try {
+
+				con = conexion.getConexion();
+
+				sentencia = con.prepareStatement(sql);
+
+				sentencia.setInt(1, miid);
+				sentencia.setString(2, miapellido);
+				sentencia.setString(3, minombre);
+				sentencia.setString(4, mitelefono);
+
+				sentencia.executeUpdate();
+
+			} catch (Exception e) {
+
+				JOptionPane.showMessageDialog(null, "Error mostrar ingresar datos" + e.getMessage());
+
+			}
+
+		}
 	}
 
 	public void modificar() {
 
-		int miid = Integer.parseInt(vista.id.getText());
-		String miapellido = vista.apellido.getText();
-		String minombre = vista.nombre.getText();
-		String mitelefono = vista.telefono.getText();
+		capturarDatosVista();
 
 		if (miid == 0 || miapellido.equals("") || minombre.equals("") || mitelefono.equals("")) {
 
@@ -137,18 +167,17 @@ public class Controlador implements ActionListener {
 
 	public void eliminar() {
 
-		int miid = Integer.parseInt(vista.id.getText());
+		capturarDatosVista();
 
-		String sql = "DELETE FROM contactos where id="+miid;
+		String sql = "DELETE FROM contactos where id=" + miid;
 
 		try {
 
 			con = conexion.getConexion();
-			
-			sentencia=con.prepareStatement(sql);
-			
+
+			sentencia = con.prepareStatement(sql);
+
 			sentencia.executeUpdate();
-			
 
 		} catch (Exception e) {
 
@@ -158,41 +187,12 @@ public class Controlador implements ActionListener {
 
 	}
 
-	public void agregarDatos() {
+	public void limpiar() {
 
-		int miid = Integer.parseInt(vista.id.getText());
-		String miapellido = vista.apellido.getText();
-		String minombre = vista.nombre.getText();
-		String mitelefono = vista.telefono.getText();
-
-		if (miid == 0 || miapellido.equals("") || minombre.equals("") || mitelefono.equals("")) {
-
-			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias");
-
-		} else {
-
-			String sql = "INSERT INTO contactos (id,APELLIDO,NOMBRE,TELEFONO) VALUES(?,?,?,?)";
-
-			try {
-
-				con = conexion.getConexion();
-
-				sentencia = con.prepareStatement(sql);
-
-				sentencia.setInt(1, miid);
-				sentencia.setString(2, miapellido);
-				sentencia.setString(3, minombre);
-				sentencia.setString(4, mitelefono);
-
-				sentencia.executeUpdate();
-
-			} catch (Exception e) {
-
-				JOptionPane.showMessageDialog(null, "Error mostrar ingresar datos" + e.getMessage());
-
-			}
-
-		}
+		vista.id.setText(null);
+		vista.apellido.setText(null);
+		vista.nombre.setText(null);
+		vista.telefono.setText(null);
 	}
 
 	public void mostrarDatos() {

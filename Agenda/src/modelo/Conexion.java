@@ -13,9 +13,9 @@ public class Conexion {
 	
 	public Connection getConexion() {
 
-		String user = "root";
-		String password = "";
 		String url = "jdbc:mysql://localhost:3306/proyecto_java";
+		String user = "root";
+		String password = "";		
 
 		try {
 
