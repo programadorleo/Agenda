@@ -2,26 +2,21 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
-public class Conexion {
+public class ConectaBaseDatos {
 
-	public Connection conexion;
-	public Statement statement;
-	public ResultSet resultset;
-	
+	public static Connection conexion;
+
 	public Connection getConexion() {
 
 		String url = "jdbc:mysql://localhost:3306/proyecto_java";
 		String user = "root";
-		String password = "";		
+		String password = "";
 
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = (Connection) DriverManager.getConnection(url, user, password);
-			statement = (Statement) conexion.createStatement();
+			conexion = DriverManager.getConnection(url, user, password);
 
 		} catch (Exception e) {
 
@@ -31,6 +26,18 @@ public class Conexion {
 
 		return conexion;
 
+	}
+
+	public static void cerrar() {
+
+		try {
+
+			if (conexion != null)
+				conexion.close();
+
+		} catch (Exception e) {
+			System.out.println("Error: No se logro cerrar conexion:" + e.getMessage());
+		}
 	}
 
 }

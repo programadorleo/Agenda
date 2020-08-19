@@ -7,24 +7,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.*;
+import modelo.ConectaBaseDatos;
 import vista.Vista;
 
 public class Controlador implements ActionListener {
 
-	Vista vista;
-	DefaultTableModel modelo;
-	Connection con;
-	Conexion conexion = new Conexion();
-	PreparedStatement sentencia;
-	JScrollPane scrollPane = new JScrollPane();
+	private Vista vista;
+	private DefaultTableModel modelo;
+	private Connection con;
+	private ConectaBaseDatos conexion = new ConectaBaseDatos();
+	private PreparedStatement sentencia;	
 
-	int miid;
-	String miapellido;
-	String minombre;
-	String mitelefono;
+	private int miid;
+	private String miapellido;
+	private String minombre;
+	private String mitelefono;
 
 	public Controlador(Vista vista) {
 
@@ -49,27 +47,19 @@ public class Controlador implements ActionListener {
 
 		if (e.getSource() == vista.agregar) {
 			agregarDatos();
-			mostrarDatos();
-			limpiar();
 		}
 
 		if (e.getSource() == vista.modificar) {
 			modificar();
-			mostrarDatos();
-			limpiar();
 		}
 
 		if (e.getSource() == vista.eliminar) {
 			eliminar();
-			mostrarDatos();
-			limpiar();
 		}
 
 		if (e.getSource() == vista.nuevo) {
 			limpiar();
 		}
-
-		// capturarDatosVista(); probar capturar datos aca y no actualizar en motodos
 
 	}
 
@@ -128,6 +118,8 @@ public class Controlador implements ActionListener {
 			}
 
 		}
+		mostrarDatos();
+		limpiar();
 	}
 
 	public void modificar() {
@@ -163,6 +155,9 @@ public class Controlador implements ActionListener {
 
 		}
 
+		mostrarDatos();
+		limpiar();
+
 	}
 
 	public void eliminar() {
@@ -184,6 +179,9 @@ public class Controlador implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Error no se pudo borrar datos" + e.getMessage());
 
 		}
+
+		mostrarDatos();
+		limpiar();
 
 	}
 
