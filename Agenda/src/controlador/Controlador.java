@@ -19,7 +19,7 @@ public class Controlador implements ActionListener {
 	private ConectaBaseDatos conexion = new ConectaBaseDatos();
 	private PreparedStatement sentencia;	
 
-	private int miid;
+	private int miid=0;
 	private String miapellido;
 	private String minombre;
 	private String mitelefono;
@@ -79,18 +79,41 @@ public class Controlador implements ActionListener {
 
 	public void capturarDatosVista() {
 
-		miid = Integer.parseInt(vista.id.getText());
+		
+		try {
+			miid = Integer.parseInt(vista.id.getText());
+			}catch(NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Debe ingresar un numero en campo id");
+			}
+		
+		
 		miapellido = vista.apellido.getText();
 		minombre = vista.nombre.getText();
 		mitelefono = vista.telefono.getText();
 
+	}
+	
+	public boolean cajasVacias() {
+		
+		boolean respuesta=true;
+		
+		if (miid == 0 || miapellido.equals("") || minombre.equals("") || mitelefono.equals("")) {
+
+			respuesta= true;
+
+		} else {
+			respuesta= false;
+		}
+		
+		return respuesta;
+		
 	}
 
 	public void agregarDatos() {
 
 		capturarDatosVista();
 
-		if (miid == 0 || miapellido.equals("") || minombre.equals("") || mitelefono.equals("")) {
+		if (cajasVacias()) {
 
 			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias");
 
@@ -123,6 +146,11 @@ public class Controlador implements ActionListener {
 	}
 
 	public void modificar() {
+		
+		int row = vista.tabla.getSelectedRow();
+
+		if (row != -1) {
+		
 
 		capturarDatosVista();
 
@@ -157,10 +185,20 @@ public class Controlador implements ActionListener {
 
 		mostrarDatos();
 		limpiar();
+		
+		}else{
+			
+			JOptionPane.showMessageDialog(null,"Debe seleccionar un contacto","Error", JOptionPane.ERROR_MESSAGE );
+		}
 
 	}
 
 	public void eliminar() {
+		
+		int row = vista.tabla.getSelectedRow();
+
+		if (row != -1) {
+		
 
 		capturarDatosVista();
 
@@ -182,6 +220,11 @@ public class Controlador implements ActionListener {
 
 		mostrarDatos();
 		limpiar();
+		
+		}else {
+			
+			JOptionPane.showMessageDialog(null,"Debe seleccionar un contacto","Error", JOptionPane.ERROR_MESSAGE );
+		}
 
 	}
 
