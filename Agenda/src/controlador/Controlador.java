@@ -115,7 +115,7 @@ public class Controlador implements ActionListener {
 
 		if (cajasVacias()) {
 
-			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias");
+			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias","Error",JOptionPane.ERROR_MESSAGE);
 
 		} else {
 
@@ -124,19 +124,16 @@ public class Controlador implements ActionListener {
 			try {
 
 				con = conexion.getConexion();
-
 				sentencia = con.prepareStatement(sql);
-
 				sentencia.setInt(1, miid);
 				sentencia.setString(2, miapellido);
 				sentencia.setString(3, minombre);
 				sentencia.setString(4, mitelefono);
-
 				sentencia.executeUpdate();
 
 			} catch (Exception e) {
 
-				JOptionPane.showMessageDialog(null, "Error mostrar ingresar datos" + e.getMessage());
+				JOptionPane.showMessageDialog(null, "Error no se puede ingresar numero de id duplicado","Error",JOptionPane.ERROR_MESSAGE);
 
 			}
 
@@ -147,6 +144,7 @@ public class Controlador implements ActionListener {
 
 	public void modificar() {
 		
+		
 		int row = vista.tabla.getSelectedRow();
 
 		if (row != -1) {
@@ -154,9 +152,9 @@ public class Controlador implements ActionListener {
 
 		capturarDatosVista();
 
-		if (miid == 0 || miapellido.equals("") || minombre.equals("") || mitelefono.equals("")) {
+		if (cajasVacias()) {
 
-			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias");
+			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias","Error",JOptionPane.ERROR_MESSAGE);
 
 		} else {
 
@@ -165,19 +163,16 @@ public class Controlador implements ActionListener {
 			try {
 
 				con = conexion.getConexion();
-
 				sentencia = con.prepareStatement(sql);
-
 				sentencia.setString(1, miapellido);
 				sentencia.setString(2, minombre);
 				sentencia.setString(3, mitelefono);
 				sentencia.setInt(4, miid);
-
 				sentencia.executeUpdate();
 
 			} catch (Exception e) {
 
-				JOptionPane.showMessageDialog(null, "Error no se modificaron los datos" + e.getMessage());
+				JOptionPane.showMessageDialog(null, "Error no se modificaron los datos","Error",JOptionPane.ERROR_MESSAGE);
 
 			}
 
@@ -214,7 +209,7 @@ public class Controlador implements ActionListener {
 
 		} catch (Exception e) {
 
-			JOptionPane.showMessageDialog(null, "Error no se pudo borrar datos" + e.getMessage());
+			JOptionPane.showMessageDialog(null, "Error no se pudo borrar datos","Error",JOptionPane.ERROR_MESSAGE);
 
 		}
 
@@ -267,7 +262,7 @@ public class Controlador implements ActionListener {
 
 		} catch (Exception e) {
 
-			JOptionPane.showMessageDialog(null, "Error mostrar datos" + e.getMessage());
+			JOptionPane.showMessageDialog(null, "Error mostrar datos" ,"Error",JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
