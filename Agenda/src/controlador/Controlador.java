@@ -17,9 +17,9 @@ public class Controlador implements ActionListener {
 	private DefaultTableModel modelo;
 	private Connection con;
 	private ConectaBaseDatos conexion = new ConectaBaseDatos();
-	private PreparedStatement sentencia;	
-
-	private int miid=0;
+	private PreparedStatement sentencia;
+    private int row;
+	private int miid = 0;
 	private String miapellido;
 	private String minombre;
 	private String mitelefono;
@@ -65,7 +65,7 @@ public class Controlador implements ActionListener {
 
 	public void seleccionar() {
 
-		int row = vista.tabla.getSelectedRow();
+	    row = vista.tabla.getSelectedRow();
 
 		if (row != -1) {
 
@@ -79,34 +79,32 @@ public class Controlador implements ActionListener {
 
 	public void capturarDatosVista() {
 
-		
 		try {
 			miid = Integer.parseInt(vista.id.getText());
-			}catch(NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Debe ingresar un numero en campo id");
-			}
-		
-		
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Debe ingresar un numero en campo id");
+		}
+
 		miapellido = vista.apellido.getText();
 		minombre = vista.nombre.getText();
 		mitelefono = vista.telefono.getText();
 
 	}
-	
+
 	public boolean cajasVacias() {
-		
-		boolean respuesta=true;
-		
+
+		boolean respuesta = true;
+
 		if (miid == 0 || miapellido.equals("") || minombre.equals("") || mitelefono.equals("")) {
 
-			respuesta= true;
+			respuesta = true;
 
 		} else {
-			respuesta= false;
+			respuesta = false;
 		}
-		
+
 		return respuesta;
-		
+
 	}
 
 	public void agregarDatos() {
@@ -115,7 +113,7 @@ public class Controlador implements ActionListener {
 
 		if (cajasVacias()) {
 
-			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias","Error",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias", "Error", JOptionPane.ERROR_MESSAGE);
 
 		} else {
 
@@ -133,7 +131,8 @@ public class Controlador implements ActionListener {
 
 			} catch (Exception e) {
 
-				JOptionPane.showMessageDialog(null, "Error no se puede ingresar numero de id duplicado","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Error no se puede ingresar numero de id duplicado", "Error",
+						JOptionPane.ERROR_MESSAGE);
 
 			}
 
@@ -144,81 +143,76 @@ public class Controlador implements ActionListener {
 
 	public void modificar() {
 		
-		
-		int row = vista.tabla.getSelectedRow();
-
 		if (row != -1) {
-		
 
-		capturarDatosVista();
+			capturarDatosVista();
 
-		if (cajasVacias()) {
+			if (cajasVacias()) {
 
-			JOptionPane.showMessageDialog(null, "No puede haber cajas vacias","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No puede haber cajas vacias", "Error", JOptionPane.ERROR_MESSAGE);
 
-		} else {
+			} else {
 
-			String sql = "UPDATE contactos SET APELLIDO=?,NOMBRE=?,TELEFONO=?  where Id=?";
+				String sql = "UPDATE contactos SET APELLIDO=?,NOMBRE=?,TELEFONO=?  where Id=?";
 
-			try {
+				try {
 
-				con = conexion.getConexion();
-				sentencia = con.prepareStatement(sql);
-				sentencia.setString(1, miapellido);
-				sentencia.setString(2, minombre);
-				sentencia.setString(3, mitelefono);
-				sentencia.setInt(4, miid);
-				sentencia.executeUpdate();
+					con = conexion.getConexion();
+					sentencia = con.prepareStatement(sql);
+					sentencia.setString(1, miapellido);
+					sentencia.setString(2, minombre);
+					sentencia.setString(3, mitelefono);
+					sentencia.setInt(4, miid);
+					sentencia.executeUpdate();
 
-			} catch (Exception e) {
+				} catch (Exception e) {
 
-				JOptionPane.showMessageDialog(null, "Error no se modificaron los datos","Error",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error no se modificaron los datos", "Error",
+							JOptionPane.ERROR_MESSAGE);
+
+				}
 
 			}
 
-		}
+			mostrarDatos();
+			limpiar();
 
-		mostrarDatos();
-		limpiar();
-		
-		}else{
-			
-			JOptionPane.showMessageDialog(null,"Debe seleccionar un contacto","Error", JOptionPane.ERROR_MESSAGE );
+		} else {
+
+			JOptionPane.showMessageDialog(null, "Debe seleccionar un contacto", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
 
 	public void eliminar() {
-		
-		int row = vista.tabla.getSelectedRow();
 
 		if (row != -1) {
-		
 
-		capturarDatosVista();
+			capturarDatosVista();
 
-		String sql = "DELETE FROM contactos where id=" + miid;
+			String sql = "DELETE FROM contactos where id=" + miid;
 
-		try {
+			try {
 
-			con = conexion.getConexion();
+				con = conexion.getConexion();
 
-			sentencia = con.prepareStatement(sql);
+				sentencia = con.prepareStatement(sql);
 
-			sentencia.executeUpdate();
+				sentencia.executeUpdate();
 
-		} catch (Exception e) {
+			} catch (Exception e) {
 
-			JOptionPane.showMessageDialog(null, "Error no se pudo borrar datos","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Error no se pudo borrar datos", "Error",
+						JOptionPane.ERROR_MESSAGE);
 
-		}
+			}
 
-		mostrarDatos();
-		limpiar();
-		
-		}else {
-			
-			JOptionPane.showMessageDialog(null,"Debe seleccionar un contacto","Error", JOptionPane.ERROR_MESSAGE );
+			mostrarDatos();
+			limpiar();
+
+		} else {
+
+			JOptionPane.showMessageDialog(null, "Debe seleccionar un contacto", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -262,7 +256,7 @@ public class Controlador implements ActionListener {
 
 		} catch (Exception e) {
 
-			JOptionPane.showMessageDialog(null, "Error mostrar datos" ,"Error",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Error mostrar datos", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}

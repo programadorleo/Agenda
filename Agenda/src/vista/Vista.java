@@ -51,7 +51,7 @@ public class Vista extends JFrame {
 		contentPane.add(lblNewLabel);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Datos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(null, "Datos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		panel.setBounds(40, 48, 440, 170);
 		panel.setBackground(Color.GRAY);
 		contentPane.add(panel);
@@ -95,8 +95,8 @@ public class Vista extends JFrame {
 		panel.add(seleccionar);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Operaciones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(44, 245, 440, 72);
+		panel_1.setBorder(new TitledBorder(null, "Operaciones", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		panel_1.setBounds(40, 245, 440, 72);
 		panel_1.setBackground(Color.gray);
 		contentPane.add(panel_1);
 		panel_1.setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -119,7 +119,7 @@ public class Vista extends JFrame {
 		panel_1.add(nuevo);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "Resultado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(null, "Resultado", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		panel_2.setBounds(40, 351, 440, 225);
 		panel_2.setBackground(Color.gray);
 		contentPane.add(panel_2);
