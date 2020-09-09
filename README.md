@@ -8,7 +8,7 @@
 ![](Agenda/img/mvc.jpg)
 
 
-**Modelo:**  es la información la cual el usuario puede visualizar en pantalla.
+**Modelo:**  es la información que el usuario puede visualizar en pantalla.
 
 **Vista:** es la representación gráfica o pantalla que estas viendo en este momento, La vista requiere del Modelo para mostrar la información en la pantalla.
 
