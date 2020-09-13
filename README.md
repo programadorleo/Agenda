@@ -1,7 +1,7 @@
 # Agenda
 
 
-## Crud Agenda utilizando la arquitectura MVC
+## Crud Agenda utilizando la arquitectura MVC.
 
 #### El patrón MVC  permite separar la aplicación en tres capas que aunque estén relacionadas Vista,  Controlador y el Modelo.
 
