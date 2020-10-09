@@ -29,8 +29,8 @@
 ##### Agragar Driver :  boton derecho proyecto elijo properties Java Build Path --> Libraries -->  Add External JARs   Seleccionamos mysql-connector-java-version.jar
 
 
--Vamos necesitar dos paquetes  java.sql y javax.sql 	
-- Las conexiones lanzan excepciones debe estar dentro de try catch
+-Vamos necesitar dos paquetes  java.sql y javax.sql. 	
+- Las conexiones lanzan excepciones debe estar dentro de try catch.
     
 	  		 	
 Pasos para conectar
